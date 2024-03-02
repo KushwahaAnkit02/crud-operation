@@ -10,7 +10,7 @@ const persistConfig = {
     key: 'root',
     storage,
 }
-console.log(slices)
+
 const persistedReducer = persistReducer(persistConfig, slices.reducer)
 
 export const store = configureStore({
