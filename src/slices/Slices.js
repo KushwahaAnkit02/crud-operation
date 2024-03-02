@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { createUser, deleteUser, fetchUsers, fetchUsersById, postDataById } from "../ApiUtils/userApi";
+import { createUser, deleteUser, fetchCountryDtails, fetchUsers, fetchUsersById, postDataById } from "../ApiUtils/userApi";
 
 
 
@@ -52,11 +52,22 @@ export const deleteSingleUser = createAsyncThunk('updateUser', async (id, { reje
     }
 });
 
+export const fetchCountries = createAsyncThunk('fetchContries', async (rejectWithValue) => {
+    const response = await fetchCountryDtails()
+    try {
+        const result = await response.json();
+        return result
+    } catch (error) {
+        return rejectWithValue(error);
+    }
+});
+
 export const slices = createSlice({
     name: "Users",
     initialState: {
         users: [],
         user: {},
+        countries: [],
         loading: false,
         errors: null
     },
@@ -104,7 +115,21 @@ export const slices = createSlice({
                 state.loading = false;
                 state.errors = action.payload;
             })
-            
+        builder
+            .addCase(fetchCountries.pending, (state) => {
+                state.loading = true;
+            })
+        builder
+            .addCase(fetchCountries.fulfilled, (state, action) => {
+                state.loading = false;
+                state.countries = action.payload
+            })
+        builder
+            .addCase(fetchCountries.rejected, (state, action) => {
+                state.loading = false;
+                state.errors = action.payload;
+            })
+
 
 
     }

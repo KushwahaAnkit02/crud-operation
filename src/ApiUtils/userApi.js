@@ -34,7 +34,7 @@ export const fetchUsersById = async (id) => {
 
 export const postDataById = async (details) => {
 
-    console.log(details.id);
+   
     try {
         const response = await fetch(`http://localhost:4000/Users/${details.id}`, {
             method: 'PUT',
@@ -47,11 +47,20 @@ export const postDataById = async (details) => {
 }
 
 export const deleteUser = async (id) => {
-    console.log("id:", id);
+   
     try {
         const response = await fetch(`http://localhost:4000/Users/${id}`, {
             method: 'DELETE',
         })
+        return response
+    } catch (error) {
+        return error
+    }
+}
+
+export const fetchCountryDtails = async () => {
+    try {
+        const response = await fetch(`https://restcountries.com/v3.1/all?fields=name`)
         return response
     } catch (error) {
         return error

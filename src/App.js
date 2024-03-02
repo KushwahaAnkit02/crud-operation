@@ -10,6 +10,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Navbar />
+
       <Routes>
         <Route path="/users" element={<Navigate to="/" />} />
         <Route path="/" element={<ShowData />} />

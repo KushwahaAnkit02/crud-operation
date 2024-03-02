@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postDetail } from '../slices/Slices';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,10 +7,12 @@ const CreateUser = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const [user, setUser] = useState({})
+    const { countries } = useSelector((state) => state.app)
 
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
+
     }
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,16 +38,27 @@ const CreateUser = () => {
                         <input type="text" className="form-control" name='contact' onChange={handleChange} />
                     </div>
                     <div className="mx-3">
-                        <label className="form-label">Country:</label>
-                        <input type="text" name='country' className="form-control" onChange={handleChange} />
+                        <label className="form-label">Select Country:</label>
+
+                        <select className="form-control" name="country" onChange={handleChange}>
+                            {countries.map((country) => {
+
+                                return (
+
+                                    <option value={country.name.common}>{country.name.common}</option>
+                                )
+
+                            })
+                            }
+                        </select>
                     </div>
                 </div>
 
                 <div className="my-4 d-flex justify-content-center">
                     <button type="submit" className="btn btn-primary">Submit</button>
                 </div>
-            </form>
-        </div>
+            </form >
+        </div >
 
     )
 }

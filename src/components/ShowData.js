@@ -1,18 +1,26 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { deleteSingleUser, getUserById, showUser, } from '../slices/Slices'
+import { deleteSingleUser, fetchCountries, getUserById, showUser, } from '../slices/Slices'
 import CreateUser from './CreateUser'
+import DeleteModal from './DeleteModal'
 
 
 const ShowData = () => {
     const dispatch = useDispatch()
     const allData = useSelector((state) => state.app)
     const details = allData.users
+    const [showModal, setShowModal] = useState(false)
+    const [deleteId, setDeleteId] = useState('')
     const navigate = useNavigate()
 
     useEffect(() => {
-        dispatch(showUser())
+        dispatch(showUser()).then(() => {
+            dispatch(fetchCountries()).then((res) => {
+
+            })
+        })
+
     }, [])
 
     const navigateToUpdate = (id) => {
@@ -22,13 +30,14 @@ const ShowData = () => {
     }
 
     const onDelete = (id) => {
-        dispatch(deleteSingleUser(id)).then((res) => {
-            dispatch(showUser())
-        })
+        setShowModal(true)
+        setDeleteId(id)
+
     }
 
     return (
         <div>
+            <DeleteModal showModal={showModal} id={deleteId} setShowModal={setShowModal} />
             <CreateUser />
             <h3 className="d-flex justify-content-center">Users</h3>
             <div className="d-flex justify-content-center" >
@@ -48,7 +57,7 @@ const ShowData = () => {
                         details && details?.map((user, i) => {
                             return (
                                 <>
-                                    <tbody key={i+'123'}>
+                                    <tbody key={i + 1}>
                                         <tr>
                                             <td>{i + 1}</td>
                                             <td><img src="https://cdn-icons-png.freepik.com/256/552/552721.png" width={50} /></td>
@@ -67,7 +76,6 @@ const ShowData = () => {
                 </table>
             </div>
         </div>
-
     )
 }
 
