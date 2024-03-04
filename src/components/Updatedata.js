@@ -12,7 +12,7 @@ const Updatedata = () => {
     // const data = useSelector((state) => state.app.user)
     const data = useSelector((state) => state.app.users)
     const { countries } = useSelector((state) => state.app)
-    
+
     const [details, setDeetails] = useState()
     const handleChange = (e) => {
         if (e.target.name == 'name') {
@@ -26,7 +26,7 @@ const Updatedata = () => {
     useEffect(() => {
         // dispatch(getUserById(id))
         const dd = data.filter(user => user.id == id)
-        
+
         setDeetails(...dd)
     }, [parems.id])
 
@@ -36,7 +36,7 @@ const Updatedata = () => {
     }
 
     return (
-        <div className='d-flex justify-content-center m-5'>
+        <div className='d-flex justify-content-center m-5 ' style={{ height: "100vh" }}>
             <div >
                 <h3 className='d-flex justify-content-center m-5'>Edit Details</h3>
                 <label className="mx-3">Name:</label>
@@ -47,7 +47,7 @@ const Updatedata = () => {
                 <select name="country" onChange={handleChange} >
                     {countries.map((country) => {
                         return (
-                            <option option value={country?.name?.common }>{country?.name?.common }</option>
+                            <option option value={country?.name?.common}>{country?.name?.common}</option>
                         )
                     })
                     }

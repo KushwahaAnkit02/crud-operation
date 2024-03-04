@@ -2,11 +2,11 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { deleteSingleUser, showUser } from '../slices/Slices'
 
-const DeleteModal = ({ showModal, id, setShowModal }) => {
+const DeleteModal = ({ showModal, id, setShowModal, mode }) => {
     const dispatch = useDispatch()
 
     const onDelete = () => {
-        dispatch(deleteSingleUser(id)).then((res) => {
+        dispatch(deleteSingleUser(id)).then(() => {
             setShowModal(false)
             dispatch(showUser())
         })
@@ -32,7 +32,7 @@ const DeleteModal = ({ showModal, id, setShowModal }) => {
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 

@@ -129,9 +129,6 @@ export const slices = createSlice({
                 state.loading = false;
                 state.errors = action.payload;
             })
-
-
-
     }
 
 

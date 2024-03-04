@@ -6,7 +6,7 @@ import CreateUser from './CreateUser'
 import DeleteModal from './DeleteModal'
 
 
-const ShowData = () => {
+const ShowData = ({ mode, className }) => {
     const dispatch = useDispatch()
     const allData = useSelector((state) => state.app)
     const details = allData.users
@@ -33,15 +33,17 @@ const ShowData = () => {
         setShowModal(true)
         setDeleteId(id)
 
+
     }
 
     return (
         <div>
-            <DeleteModal showModal={showModal} id={deleteId} setShowModal={setShowModal} />
-            <CreateUser />
-            <h3 className="d-flex justify-content-center">Users</h3>
-            <div className="d-flex justify-content-center" >
-                <table className="table w-50" style={{ border: "2px solid gray" }}>
+            <DeleteModal showModal={showModal} id={deleteId} setShowModal={setShowModal}
+                mode={mode}
+            />
+            <h3 className="d-flex justify-content-center ">Users</h3>
+            <div className="d-flex justify-content-center " >
+                <table className={`table w-50 ${className}`} style={{ border: "2px solid gray" }}>
                     <thead>
                         <tr>
                             <th>Sr.No.</th>
@@ -56,19 +58,19 @@ const ShowData = () => {
                     {
                         details && details?.map((user, i) => {
                             return (
-                                <>
-                                    <tbody key={i + 1}>
-                                        <tr>
-                                            <td>{i + 1}</td>
-                                            <td><img src="https://cdn-icons-png.freepik.com/256/552/552721.png" width={50} /></td>
-                                            <td>{user?.name}</td>
-                                            <td>{user?.contact}</td>
-                                            <td>{user?.country}</td>
-                                            <td><button className='btn btn-primary' onClick={() => navigateToUpdate(user.id)}>Update</button></td>
-                                            <td><button className='btn btn-danger' onClick={() => onDelete(user?.id)}>delete</button></td>
-                                        </tr>
-                                    </tbody>
-                                </>
+
+                                <tbody key={i}>
+                                    <tr >
+                                        <td>{i + 1}</td>
+                                        <td><img src="https://cdn-icons-png.freepik.com/256/552/552721.png" width={50} /></td>
+                                        <td>{user?.name}</td>
+                                        <td>{user?.contact}</td>
+                                        <td>{user?.country}</td>
+                                        <td><button className='btn btn-primary' onClick={() => navigateToUpdate(user.id)}>Update</button></td>
+                                        <td><button className='btn btn-danger' onClick={() => onDelete(user?.id)}>Delete</button></td>
+                                    </tr>
+                                </tbody>
+
                             )
                         })
                     }
