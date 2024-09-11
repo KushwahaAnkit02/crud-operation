@@ -1,5 +1,4 @@
-const endPoint = 'http://localhost:4000/Users'
-
+const endPoint = 'http://localhost:3000/Users'
 
 export const createUser = async (data) => {
     try {
@@ -23,7 +22,7 @@ export const fetchUsers = async () => {
 }
 export const fetchUsersById = async (id) => {
     try {
-        const response = await fetch(`http://localhost:4000/Users/${id}`, {
+        const response = await fetch(`http://localhost:3000/Users/${id}`, {
             method: 'GET',
         })
         return response
@@ -36,7 +35,7 @@ export const postDataById = async (details) => {
 
    
     try {
-        const response = await fetch(`http://localhost:4000/Users/${details.id}`, {
+        const response = await fetch(`http://localhost:3000/Users/${details.id}`, {
             method: 'PUT',
             body: JSON.stringify(details)
         })
@@ -49,7 +48,7 @@ export const postDataById = async (details) => {
 export const deleteUser = async (id) => {
    
     try {
-        const response = await fetch(`http://localhost:4000/Users/${id}`, {
+        const response = await fetch(`http://localhost:3000/Users/${id}`, {
             method: 'DELETE',
         })
         return response

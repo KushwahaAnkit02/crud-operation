@@ -10,14 +10,12 @@ const persistConfig = {
     key: 'root',
     storage,
 }
-
 const persistedReducer = persistReducer(persistConfig, slices.reducer)
 
 export const store = configureStore({
     reducer: {
         app: persistedReducer
     }
-
 })
 
 setupListeners(store.dispatch)

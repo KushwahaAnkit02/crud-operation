@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { deleteSingleUser, fetchCountries, getUserById, showUser, } from '../slices/Slices'
-import CreateUser from './CreateUser'
+import { fetchCountries, getUserById, showUser, } from '../slices/Slices'
 import DeleteModal from './DeleteModal'
 
 
@@ -17,7 +16,6 @@ const ShowData = ({ mode, className }) => {
     useEffect(() => {
         dispatch(showUser()).then(() => {
             dispatch(fetchCountries()).then((res) => {
-
             })
         })
 
@@ -37,7 +35,7 @@ const ShowData = ({ mode, className }) => {
     }
 
     return (
-        <div>
+        <div className='' style={{ marginTop: "10vh" }}>
             <DeleteModal showModal={showModal} id={deleteId} setShowModal={setShowModal}
                 mode={mode}
             />
@@ -45,8 +43,8 @@ const ShowData = ({ mode, className }) => {
             <div className="d-flex justify-content-center " >
                 <table className={`table w-50 ${className}`} style={{ border: "2px solid gray" }}>
                     <thead>
-                        <tr>
-                            <th>Sr.No.</th>
+                        <tr >
+                            <th className="col">Sr.No.</th>
                             <th className="col">USER</th>
                             <th className="col">NAME</th>
                             <th className="col">CONTACT</th>

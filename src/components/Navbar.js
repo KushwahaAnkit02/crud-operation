@@ -8,10 +8,10 @@ const Navbar = ({ changeMode, name }) => {
     const addUsers = () => {
         setAddUser(!addUser)
     }
-
+    
     return (
         <div>
-            <nav className="navbar navbar-expand-lg  " style={{ borderBottom: "1px solid gray" }}>
+            <nav className="navbar navbar-expand-lg fixed-top " style={{ borderBottom: "1px solid gray", zIndex: 1, backgroundColor: "white" }}>
                 <div className="container-fluid">
                     <Link className="navbar-brand" to='/users'>Navbar</Link>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

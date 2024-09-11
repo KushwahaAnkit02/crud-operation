@@ -56,7 +56,7 @@ export const fetchCountries = createAsyncThunk('fetchContries', async (rejectWit
     const response = await fetchCountryDtails()
     try {
         const result = await response.json();
-        return result
+        return   result
     } catch (error) {
         return rejectWithValue(error);
     }
@@ -85,7 +85,7 @@ export const slices = createSlice({
         builder
             .addCase(postDetail.rejected, (state, action) => {
                 state.loading = false;
-                state.errors = action.payload;
+                state.errors.message = action.payload;
             })
         builder
             .addCase(showUser.pending, (state) => {

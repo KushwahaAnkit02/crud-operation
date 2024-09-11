@@ -7,24 +7,28 @@ import AddMoreModal from './AddMoreModal';
 const CreateUser = ({ setAddUser }) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState()
     const { countries } = useSelector((state) => state.app)
     const [showModal, setShowModal] = useState(false)
 
     const handleChange = (e) => {
         setUser({ ...user, [e.target.name]: e.target.value })
-
     }
     const handleSubmit = (e) => {
         e.preventDefault()
-        dispatch(postDetail(user))
-        setShowModal(true)
-        navigate('/users')
+        if (Object.keys(user).length == 3) {
+            dispatch(postDetail(user))
+            setShowModal(true)
+            navigate('/users')
+        } else {
+            alert('jjjjjjj')
+        }
     }
     const addMore = () => {
         setShowModal(false)
         setAddUser(true)
     }
+
     return (
         <>
             <AddMoreModal
@@ -33,7 +37,7 @@ const CreateUser = ({ setAddUser }) => {
                 addMore={addMore}
                 setAddUser={setAddUser}
             />
-            <div className='mt-5'>
+            <div className='' style={{ marginTop: "5rem" }}>
                 <h4 className='d-flex justify-content-center'> Add New User</h4>
                 <form onSubmit={handleSubmit}>
                     <div className=" d-flex justify-content-center">

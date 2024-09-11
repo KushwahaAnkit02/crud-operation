@@ -7,7 +7,7 @@ const AddMoreModal = ({ showModal, setShowModal, addMore, setAddUser }) => {
     }
 
     return (
-        showModal && <div style={{ position: 'fixed', left: window.innerWidth / 2.35, top: 250, }} >
+        showModal && <div style={{ position: 'fixed', left: window.innerWidth / 2.35, top: 250, }}>
             <div >
                 <div className="modal-dialog">
                     <div className="modal-content">
